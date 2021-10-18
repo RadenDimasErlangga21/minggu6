@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\userController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('students', StudentController::class);
+
+Route::resource('userCrud', userController::class);
