@@ -23,6 +23,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/searchUser', [userController::class, 'searchUser'])->name('searchUser');
+
+Route::get('/search', [studentController::class, 'search'])->name('search');
+
 Route::resource('students', StudentController::class);
 
 Route::resource('userCrud', userController::class);

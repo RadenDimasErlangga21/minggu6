@@ -99,5 +99,10 @@ class StudentController extends Controller
         $student->delete();
         return redirect()->route('students.index');
     }
-
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $student = Student::where('name', 'like', "%" . $keyword . "%")->paginate(5);
+        return view('students.index', compact('student'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
 }

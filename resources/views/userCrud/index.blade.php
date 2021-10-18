@@ -13,9 +13,16 @@
                         {{ session('status') }}
                     </div>
                     @endif
-
+                    
                     <a href="/userCrud/create" class="btn btn-primary">Add Data</a> 
                     <br><br>
+
+                    <form class="form" method="get" action="{{ route('searchUser') }}">
+                    <div class="form-group w-100 mb-3">
+                    <label for="search" class="d-block mr-2">Pencarian</label>
+                    <input type="text" name="search" class="form-control w-75 d-inline" id="search" placeholder="search data">
+                    <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                    </div>
 
                     <table class="table table-responsive table-striped">
                         <thead>

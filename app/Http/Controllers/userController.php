@@ -98,4 +98,11 @@ class userController extends Controller
         $users_crud->delete();
         return redirect()->route('userCrud.index');
     }
+
+    public function searchUser(Request $request)
+    {
+        $keyword = $request->searchUser;
+        $User = User::where('name', 'like', "%" . $keyword . "%")->paginate(5);
+        return view('userCrud.index', compact('User'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
 }
