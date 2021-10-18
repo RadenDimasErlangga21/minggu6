@@ -52,7 +52,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+            $student = Student::find($id);
+            return view('students.view',['student'=>$student]);
     }
 
     /**
@@ -98,4 +99,5 @@ class StudentController extends Controller
         $student->delete();
         return redirect()->route('students.index');
     }
+
 }
