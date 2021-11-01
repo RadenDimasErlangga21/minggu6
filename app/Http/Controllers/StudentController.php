@@ -69,6 +69,12 @@ class StudentController extends Controller
             return view('students.view',['student'=>$student]);
     }
 
+    public function menu_nilai($id)
+    {
+        $student = Student::find($id);
+        return view('students.nilai', ['student'=>$student]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -102,7 +108,7 @@ class StudentController extends Controller
 
             $student->kelas()->associate($kelas);
             $student->save();
-            
+
             return redirect()->route('students.index');
     }
 
