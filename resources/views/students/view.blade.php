@@ -22,7 +22,7 @@
                         <tr><th>ID</th><th>:</th><td>{{ $student->id}}</td></tr>
                         <tr><th>NIM</th><th>:</th><td>{{$student->nim}}</td></tr>
                         <tr><th>Name</th><th>:</th><td>{{$student->name}}</td></tr>
-                        <tr><th>Class</th><th>:</th><td>{{$student->class}}</td></tr>
+                        <tr><th>Class</th><th>:</th><td>{{$student->kelas->class_name}}</td></tr>
                         <tr><th>Department</th><th>:</th><td>{{$student->department}}</td></tr>
                         <tr><th>Phone Number</th><th>:</th><td>{{$student->phone_number}}</td></tr>
                         </table>
