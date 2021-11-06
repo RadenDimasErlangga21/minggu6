@@ -40,10 +40,15 @@ class StudentController extends Controller
     {
         $student = new Student;
 
+        if($request->file('photo')){
+            $image_name = $request->file('photo')->store('images','public');
+        }
+
         $student->nim = $request->nim;
         $student->name = $request->name;
         $student->department = $request->department;
         $student->phone_number = $request->phone_number;
+        $student->photo = $image_name;
 
         $kelas = new Kelas;
         $kelas->id = $request->Kelas;
@@ -102,6 +107,12 @@ class StudentController extends Controller
             $student->name = $request->name;
             $student->department = $request->department;
             $student->phone_number = $request->phone_number;
+
+            if($student->photo && file_exists(storage_path('app/public/$student->photo'))){
+                \Storage::delete('public/'.$student->photo);
+            }
+            $image_name = $request->file('photo')->store('images','public');
+            $student->photo = $image_nam;
 
             $kelas = new Kelas;
             $kelas->id = $request->Kelas;
