@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Kelas;
+use Illuminate\Support\Facades\Gate;
 use PDF;
 
 class StudentController extends Controller
@@ -147,5 +148,13 @@ class StudentController extends Controller
         $student = Student::find($id);
         $pdf = PDF::loadview('students.report',['student'=>$student]);
         return $pdf->stream();
+    }
+    public function __construct()
+    {
+        //$this->middleware('auth');
+        $this->middleware(function($request, $next){
+            if(Gate::allows('manage-users')) return $next($request);
+            abort(403,'Anda tidak memiliki cukup hak akses');
+        });
     }
 }

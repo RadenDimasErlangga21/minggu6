@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 
@@ -13,10 +14,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -27,5 +24,15 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         return view('home', ['user' => $user]);
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        /*$this->middleware(function($request, $next){
+        *  if(Gate::allows('manage-users')) return $next($request);
+        *  abort(403,'Anda tidak memiliki cukup hak akses');
+        *  });
+        */
     }
 }
